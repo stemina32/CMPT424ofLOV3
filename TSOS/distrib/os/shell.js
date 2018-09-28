@@ -51,6 +51,12 @@ var TSOS;
             this.commandList[this.commandList.length] = sc;
             // ps  - list the running processes and their IDs
             // kill <id> - kills the specified process id.
+            //date
+            sc = new TSOS.ShellCommand(this.shellDate, "date" , "- Displays the date to the user.");
+            this.commandList[this.commandList.length] = sc;
+            //whereami
+            sc = new TSOS.ShellCommand(this.shellWhereami, "Whereami" , "Displays the user's current location.")
+            this.commandList[this.commandList.length] = sc;
             //
             // Display the initial prompt.
             this.putPrompt();
@@ -195,6 +201,10 @@ var TSOS;
                     case "help":
                         _StdOut.putText("Help displays a list of (hopefully) valid commands.");
                         break;
+                   case "Topic 1":
+                        _StdOut.putText("Topic 1 displays a list of valid commands.");
+                   case "Topic 2":
+                        _StdOut.putText("Topic 2 displays a list of valid commands.");
                     // TODO: Make descriptive MANual page entries for the the rest of the shell commands here.
                     default:
                         _StdOut.putText("No manual entry for " + args[0] + ".");
@@ -246,6 +256,29 @@ var TSOS;
                 _StdOut.putText("Usage: prompt <string>  Please supply a string.");
             }
         };
+        Shell.prototype.shellDate = function (args) {
+           //get the date in Mo/Da/Year format
+           if (args.length > 0) {
+              var d = new date();
+              var dd = today.getDate();
+              var mm = today.getMonth()++;
+              var yyyy= today.getYear();
+              if(dd<10) {
+                 dd = '0'+dd
+              } 
+              if(mm<10) {
+                 mm = '0'+mm
+              } 
+              today = mm + '/' + dd + '/' + yyyy;
+              _StdOut.putText(today);
+         };
+         Shell.prototype.shellWhereami = function (args) {
+            if (args.length > 0) {
+            
+            }
+         }
+           
+              _
         return Shell;
     })();
     TSOS.Shell = Shell;
